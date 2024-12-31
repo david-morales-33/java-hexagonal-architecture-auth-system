@@ -1,4 +1,4 @@
-package com.dmx.auth.user.domain;
+package com.dmx.auth.shared.domain;
 
 import java.util.Objects;
 

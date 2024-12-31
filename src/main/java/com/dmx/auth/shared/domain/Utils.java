@@ -1,4 +1,4 @@
-package com.dmx.auth.user.domain;
+package com.dmx.auth.shared.domain;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
