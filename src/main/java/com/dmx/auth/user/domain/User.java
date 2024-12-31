@@ -1,16 +1,24 @@
 package com.dmx.auth.user.domain;
 
+import com.dmx.auth.role.domain.Role;
+import com.dmx.auth.role.domain.RoleDTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public final class User {
     private final UserId id;
     private final UserName name;
     private final UserEmail email;
     private final UserHashedPassword hashedPassword;
+    private final List<Role> roleList;
 
-    public User(UserId id, UserName name, UserEmail email, UserHashedPassword hashedPassword) {
+    public User(UserId id, UserName name, UserEmail email, UserHashedPassword hashedPassword, List<Role> RoleList) {
         this.name = name;
         this.email = email;
         this.id = id;
         this.hashedPassword = hashedPassword;
+        this.roleList = RoleList;
     }
 
     public UserId getId() {
@@ -29,21 +37,31 @@ public final class User {
         return this.hashedPassword;
     }
 
+    public List<Role> getRoleList() {
+        return this.roleList;
+    }
+
     public static User fromPrimitives(UserDTO data) {
+        List<Role> roleList = new ArrayList<>();
+        data.roleList().forEach(element -> roleList.add(element.id(), Role.fromPrimitives(element)));
+
         return new User(
                 new UserId(data.id()),
                 new UserName(data.name()),
                 new UserEmail(data.email()),
-                new UserHashedPassword(data.hashedPassword())
+                new UserHashedPassword(data.hashedPassword()),
+                roleList
         );
     }
-
     public UserDTO toPrimitives() {
+        List<RoleDTO> roleList = new ArrayList<>();
+        this.roleList.forEach(element->roleList.add(element.getId().value(), element.toPrimitives()));
         return new UserDTO(
                 this.id.value(),
                 this.name.value(),
                 this.email.value(),
-                this.hashedPassword.value()
+                this.hashedPassword.value(),
+                roleList
         );
     }
 }
