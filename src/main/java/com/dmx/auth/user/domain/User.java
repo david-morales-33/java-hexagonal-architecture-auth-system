@@ -1,5 +1,6 @@
 package com.dmx.auth.user.domain;
 
+import com.dmx.auth.credentials.domain.CredentialPassword;
 import com.dmx.auth.role.domain.Role;
 import com.dmx.auth.role.domain.RoleDTO;
 
@@ -41,6 +42,10 @@ public final class User {
         return this.roleList;
     }
 
+    public boolean validatePassword(PasswordService service, CredentialPassword password) {
+        return service.validate(password, this.hashedPassword);
+    }
+
     public static User fromPrimitives(UserDTO data) {
         List<Role> roleList = new ArrayList<>();
         data.roleList().forEach(element -> roleList.add(element.id(), Role.fromPrimitives(element)));
@@ -53,9 +58,10 @@ public final class User {
                 roleList
         );
     }
+
     public UserDTO toPrimitives() {
         List<RoleDTO> roleList = new ArrayList<>();
-        this.roleList.forEach(element->roleList.add(element.getId().value(), element.toPrimitives()));
+        this.roleList.forEach(element -> roleList.add(element.getId().value(), element.toPrimitives()));
         return new UserDTO(
                 this.id.value(),
                 this.name.value(),
