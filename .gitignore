@@ -37,7 +37,6 @@ build/
 ### Mac OS ###
 .DS_Store
 
-src/main/resources/hibernate.cfg.xml
 
 /src/main/java/com/dmx/server/entities
 /src/main/java/com/dmx/server/controllers
