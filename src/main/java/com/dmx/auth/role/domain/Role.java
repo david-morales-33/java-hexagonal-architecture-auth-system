@@ -18,7 +18,7 @@ public final class Role {
     }
 
     public static Role fromPrimitives(RoleDTO data) {
-        return new Role(new RoleId(data.id()), new RoleLabel(data.label()));
+        return new Role(new RoleId(data.getId()), new RoleLabel(data.getLabel()));
     }
 
     public RoleDTO toPrimitives() {

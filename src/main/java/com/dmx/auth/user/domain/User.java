@@ -48,15 +48,14 @@ public final class User {
 
     public static User fromPrimitives(UserDTO data) {
         List<Role> roleList = new ArrayList<>();
-        data.roleList().forEach(element -> roleList.add(element.id(), Role.fromPrimitives(element)));
+        data.getRoleList().forEach(element -> roleList.add(element.getId(), Role.fromPrimitives(element)));
 
         return new User(
-                new UserId(data.id()),
-                new UserName(data.name()),
-                new UserEmail(data.email()),
-                new UserHashedPassword(data.hashedPassword()),
-                roleList
-        );
+                new UserId(data.getId()),
+                new UserName(data.getName()),
+                new UserEmail(data.getEmail()),
+                new UserHashedPassword(data.getHashedPassword()),
+                roleList);
     }
 
     public UserDTO toPrimitives() {
@@ -67,7 +66,6 @@ public final class User {
                 this.name.value(),
                 this.email.value(),
                 this.hashedPassword.value(),
-                roleList
-        );
+                roleList);
     }
 }
