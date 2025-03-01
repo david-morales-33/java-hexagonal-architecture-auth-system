@@ -16,5 +16,9 @@ public class RoleDTO{
     public String getLabel() {
         return label;
     }
+    @Override
+    public String toString() {
+        return "RoleDTO [id=" + id + ", label=" + label + "]";
+    }
 
 }

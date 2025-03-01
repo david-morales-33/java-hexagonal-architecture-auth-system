@@ -38,4 +38,11 @@ public class UserDTO {
                 return roleList;
         }
 
+        @Override
+        public String toString() {
+                return "UserDTO [id=" + id + ", name=" + name + ", email=" + email + ", hashedPassword="
+                                + hashedPassword + ", roleList=" + roleList.toString() + "]";
+        }
+        
+
 }

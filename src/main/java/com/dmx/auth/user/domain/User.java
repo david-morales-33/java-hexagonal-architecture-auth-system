@@ -48,7 +48,7 @@ public final class User {
 
     public static User fromPrimitives(UserDTO data) {
         List<Role> roleList = new ArrayList<>();
-        data.getRoleList().forEach(element -> roleList.add(element.getId(), Role.fromPrimitives(element)));
+        data.getRoleList().forEach(element -> roleList.add(Role.fromPrimitives(element)));
 
         return new User(
                 new UserId(data.getId()),
@@ -60,7 +60,7 @@ public final class User {
 
     public UserDTO toPrimitives() {
         List<RoleDTO> roleList = new ArrayList<>();
-        this.roleList.forEach(element -> roleList.add(element.getId().value(), element.toPrimitives()));
+        this.roleList.forEach(element -> roleList.add(element.toPrimitives()));
         return new UserDTO(
                 this.id.value(),
                 this.name.value(),

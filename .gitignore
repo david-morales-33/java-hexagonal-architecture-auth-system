@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+## TEST
+src/main/java/com/dmx/server/controllers
